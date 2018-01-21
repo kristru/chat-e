@@ -27,7 +27,7 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">Welcome to React</h1>
             </header>
-            <RoomsList />
+            <RoomsList firebase={firebase}></RoomsList>
           </section>
 
           <section className="Message-Board col-lg-8"></section>
