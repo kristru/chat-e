@@ -13,9 +13,8 @@ import React, {Component} from 'react';
   componentDidMount(room) {
      this.roomsRef.on('child_added', snapshot => {
        console.log(snapshot);
+       const room = snapshot.val();
        this.setState({rooms: this.state.rooms.concat( room )});
-       //GETS UNDEFINED
-       console.log(room);
      });
    }
 
@@ -23,11 +22,8 @@ import React, {Component} from 'react';
     return(
       <ul className="rooms-list">
         {
-          this.state.rooms.map((room,index) =>
-            //GETS BLANK LI <li key={index}>{this.state.rooms[index]}</li>
-            //GETS AN UNDEFINED ERROR<li key={index}>{this.state.rooms[index].value}</li>
-            //GETS BLANK LI <li key={index}>{this.state.room}</li>
-            <li key={index}>{index}</li>
+          this.state.rooms.map((room, index) =>
+            <li className='room' key={index}>{room.name}</li>
           )
         }
       </ul>
