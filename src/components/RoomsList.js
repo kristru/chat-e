@@ -22,14 +22,19 @@ import React, {Component} from 'react';
    }
 
    handleChange(e){
+     //this is setting the state of newRoomName
      this.setState({newRoomName:e.target.value});
-     console.log(e.target.value);
+     console.log('newRoomName:' + this.state.newRoomName)
    }
 
    handleSubmit(e) {
+     //stops the page from refreshing
      e.preventDefault();
+     //if this field is blank do nothing
+     if(!this.state.newRoomName) {return};
      //push() input value to this.roomsRef
-     console.log(e.target.value);
+     console.log('This is what will be pushed: ' + this.state.newRoomName);
+     this.roomsRef.push({name:this.state.newRoomName});
    }
 
   render(){
