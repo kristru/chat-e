@@ -35,6 +35,8 @@ import React, {Component} from 'react';
      //push() input value to this.roomsRef
      console.log('This is what will be pushed: ' + this.state.newRoomName);
      this.roomsRef.push({name:this.state.newRoomName});
+     //clear input field
+     this.setState({newRoomName: ''});
    }
 
   render(){
