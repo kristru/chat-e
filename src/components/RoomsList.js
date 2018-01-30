@@ -7,7 +7,8 @@ import React, {Component} from 'react';
     this.roomsRef = this.props.firebase.database().ref('rooms');
     this.state = {
       rooms:[],
-      newRoomName: ''
+      newRoomName: '',
+      activeRoom:'',
     };
   }
 
@@ -39,6 +40,12 @@ import React, {Component} from 'react';
      this.setState({newRoomName: ''});
    }
 
+   handleClick(e){
+     e.preventDefault();
+     console.log("li clicked");
+   }
+
+
   render(){
     return(
       <section>
@@ -53,7 +60,7 @@ import React, {Component} from 'react';
         <ul className="rooms-list">
           {
             this.state.rooms.map((room, index) =>
-              <li className='room' key={ index }>{room.name}</li>
+              <li className='room' key={ index } onClick={this.handleClick}>{room.name}</li>
             )
           }
         </ul>
