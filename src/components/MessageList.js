@@ -3,24 +3,40 @@ import React, {Component} from 'react';
 class MessageList extends Component {
  constructor(props){
    super(props);
-   this.roomsRef = this.props.firebase.database().ref('rooms');
+   this.messageRef = this.props.firebase.database().ref('messages');
    this.state = {
-     username: this.roomsRef.username,
-     content: "message",
-     sentAt: "this.timeStamp",
-     roomID: "roomID",
-
+     messages: [],
+     content: '',
+     roomId: '',
+     username: '',
+     sentAt: '',
    };
  }
 
-
+ componentDidMount(messages) {
+   //firebase read function (.on) of Database snapshots
+    this.messageRef.on('child_added', snapshot => {
+      //sets room to a snapshot
+      const message = snapshot.val();
+      //updates the dom by creating a new array with the room
+      this.setState({messages: this.state.messages.concat( message )});
+    });
+  }
 
  render(){
   return(
     <section>
       <section>
-        <ul>
-          <li>Here is where a list of messages would go.</li>
+        <ul className="message-list">
+          {
+            this.state.messages.map((message, index) =>
+              <li className="message" key={index}>
+                <div className="content">{message.content}</div>
+                <div className="username">from: {message.username}</div>
+                <div className="timestamp">sent:{message.sentAt}</div>
+              </li>
+            )
+          }
         </ul>
       </section>
       <form>
