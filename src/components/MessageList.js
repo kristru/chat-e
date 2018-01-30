@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class MessageList extends Component {
  constructor(props){
    super(props);
+   //this sets the messages database to this.messageRef
    this.messageRef = this.props.firebase.database().ref('messages');
    this.state = {
      messages: [],
@@ -13,12 +14,13 @@ class MessageList extends Component {
    };
  }
 
- componentDidMount(messages) {
-   //firebase read function (.on) of Database snapshots
+//this mounts the information to the dom
+ componentDidMount(message) {
+   //adding a trigger or event listener for every child added
     this.messageRef.on('child_added', snapshot => {
-      //sets room to a snapshot
+      //sets message to the snapshot value
       const message = snapshot.val();
-      //updates the dom by creating a new array with the room
+      //updates the dom by creating a new array with the message
       this.setState({messages: this.state.messages.concat( message )});
     });
   }
