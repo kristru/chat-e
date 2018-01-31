@@ -5,6 +5,7 @@ import React, {Component} from 'react';
   constructor(props){
     super(props);
     this.roomsRef = this.props.firebase.database().ref('rooms');
+
     this.state = {
       rooms:[],
       newRoomName: '',
@@ -40,11 +41,6 @@ import React, {Component} from 'react';
      this.setState({newRoomName: ''});
    }
 
-   handleClick(e){
-     e.preventDefault();
-     console.log("li clicked");
-   }
-
 
   render(){
     return(
@@ -60,7 +56,7 @@ import React, {Component} from 'react';
         <ul className="rooms-list">
           {
             this.state.rooms.map((room, index) =>
-              <li className='room' key={ index } onClick={this.handleClick}>{room.name}</li>
+              <li className='room' key={ index } onClick={ () => this.props.setActiveRoom(room) }>{room.name}</li>
             )
           }
         </ul>
