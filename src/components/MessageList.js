@@ -11,6 +11,7 @@ class MessageList extends Component {
      roomId: '',
      username: '',
      sentAt: '',
+     displayedMessages: [],
    };
  }
 
