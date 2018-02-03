@@ -17,7 +17,8 @@ class MessageList extends Component {
 
  //invoked before a mounted component recieves a new props
  componentWillReceiveProps(nextProps) {
-   //console.log(nextProps.activeRoom);
+   console.log(nextProps);
+   console.log(nextProps.activeRoom);
    }
 
 //this mounts the information to the dom
@@ -33,12 +34,11 @@ class MessageList extends Component {
 
 updateDisplayedMessages(activeRoom) {
   console.log(this.props.activeRoom);
-
-  //const results will change to setState
-  const results = this.state.messages.filter((message)=> message.roomId === this.props.activeRoom);
-  //this is what displayedMessages will be
+  //const results will be setState
+  const results = this.state.messages.filter((message) => message.roomID === this.props.activeRoom.key);
+  console.log(this.state.messages);
+  console.log(this.state.messages.message);
   console.log(results);
-
 }
 
  render(){

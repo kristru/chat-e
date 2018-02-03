@@ -18,7 +18,7 @@ import React, {Component} from 'react';
        //sets room to a snapshot
        const room = snapshot.val();
        room.key = snapshot.key;
-       console.log(room);
+       //console.log(room);
        //updates the dom by creating a new array with the room
        this.setState({rooms: this.state.rooms.concat( room )});
      });
