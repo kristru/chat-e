@@ -18,7 +18,6 @@ class MessageList extends Component {
  //invoked before a mounted component recieves a new props
  componentWillReceiveProps(nextProps) {
    console.log(nextProps);
-   console.log(nextProps.activeRoom);
    }
 
 //this mounts the information to the dom
@@ -33,23 +32,20 @@ class MessageList extends Component {
   }
 
 updateDisplayedMessages(activeRoom) {
-  console.log(this.props.activeRoom);
   //const results will be setState
   const results = this.state.messages.filter((message) => message.roomID === this.props.activeRoom.key);
-  console.log(this.state.messages);
-  console.log(this.state.messages.message);
   console.log(results);
 }
 
  render(){
   return(
     <section>
-      <h1>You&apos;re in room: {this.props.activeRoom}</h1>
+      <h1>You&apos;re in room: {this.props.activeRoom.name}</h1>
       <section>
         <ul className="message-list" id="activeRoom">
           {
             this.state.messages.map((message, index) =>
-              <li className="message" key={index} onClick={this.updateDisplayedMessages()}>
+              <li className="message" key={index}>
                 <div className="content">{message.content}</div>
                 <div className="username">from: {message.username}</div>
                 <div className="timestamp">sent:{message.sentAt}</div>
