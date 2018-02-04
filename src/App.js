@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import RoomsList from './components/RoomsList.js'
+import RoomsList from './components/RoomsList.js';
+import MessageList from './components/MessageList.js'
 import * as firebase from 'firebase';
 
 // Initialize Firebase
@@ -17,6 +18,17 @@ import * as firebase from 'firebase';
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      activeRoom: '',
+    };
+  }
+
+setActiveRoom(room){
+  this.setState({activeRoom:room.key});
+}
+
   render() {
     return (
       <div className="App container-fluid">
@@ -27,10 +39,19 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">Welcome to React</h1>
             </header>
-            <RoomsList firebase={firebase}></RoomsList>
+            <RoomsList
+              firebase={firebase}
+              activeRoom={this.state.activeRoom}
+              setActiveRoom={(room) => this.setActiveRoom(room)}
+            />
           </section>
 
-          <section className="Message-Board col-lg-8"></section>
+          <section className="Message-Board col-lg-8">
+            <MessageList
+              firebase={firebase}
+              activeRoom={this.state.activeRoom}
+            />
+          </section>
 
         </div>
       </div>
