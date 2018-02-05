@@ -38,7 +38,7 @@ setActiveRoom(room){
           <section className="Left-Dashboard col-lg-4">
             <header className="App-header row">
               <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
+              <h1 className="App-title">Welcome to {this.state.activeRoom.name}</h1>
             </header>
             <RoomsList
               firebase={firebase}
