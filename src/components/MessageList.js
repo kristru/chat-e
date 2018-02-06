@@ -35,9 +35,16 @@ class MessageList extends Component {
 
 updateDisplayedMessages(activeRoom) {
   console.log(activeRoom);
+  const results = this.state.messages.filter((message) => message.roomId === activeRoom.key);
+  console.log(results);
+  this.setState({displayedMessages:results});
+
+  // this works, but not sure what to do with it
   for(var i = 0; i < this.state.messages.length; i++){
     if(this.state.messages[i].roomId === activeRoom.key){
       console.log('match');
+      //when setState I get an error that displayedMessages.map is not a function
+      // on line 52
       //this.setState({displayedMessages:this.state.messages[i]})
     }
   }
