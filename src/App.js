@@ -22,9 +22,16 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      currentUser: '',
       activeRoom: '',
     };
   }
+
+setUser(user){
+  this.setState({currentUser: user});
+  console.log('This is the currentUser:')
+  console.log(this.state.currentUser);
+}
 
 setActiveRoom(room){
   this.setState({activeRoom:room});
@@ -42,6 +49,7 @@ setActiveRoom(room){
               <h1 className="App-title">Welcome</h1>
               <User
                 firebase={firebase}
+                setUser={(user)=>this.setUser(user)}
               />
             </header>
           </section>
