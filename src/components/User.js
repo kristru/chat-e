@@ -14,9 +14,17 @@ class User extends Component {
     console.log(provider);
   }
 
+  signOut(){
+    this.props.firebase.auth().signOut();
+    console.log('sign user out successful');
+  }
+
   render(){
    return(
-     <button onClick={(provider) => this.signInWithPopup(provider)}>Sign In</button>
+     <section className="login-section">
+      <button onClick={(provider) => this.signInWithPopup(provider)}>Sign In</button>
+      <button onClick={() => this.signOut()}>Sign Out</button>
+     </section>
    );
   }
 }
