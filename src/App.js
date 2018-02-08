@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import RoomsList from './components/RoomsList.js';
-import MessageList from './components/MessageList.js'
+import MessageList from './components/MessageList.js';
+import User from './components/User.js';
 import * as firebase from 'firebase';
 
 // Initialize Firebase
@@ -38,8 +39,13 @@ setActiveRoom(room){
           <section className="Left-Dashboard col-lg-4">
             <header className="App-header row">
               <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to {this.state.activeRoom.name}</h1>
+              <h1 className="App-title">Welcome</h1>
+              <User
+                firebase={firebase}
+              />
             </header>
+          </section>
+          <section>
             <RoomsList
               firebase={firebase}
               activeRoom={this.state.activeRoom}
@@ -48,6 +54,7 @@ setActiveRoom(room){
           </section>
 
           <section className="Message-Board col-lg-8">
+            <h2 className="RoomName">{this.state.activeRoom.name}</h2>
             <MessageList
               firebase={firebase}
               activeRoom={this.state.activeRoom}
