@@ -22,15 +22,22 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentUser: '',
+      user: '',
+      displayName:'',
       activeRoom: '',
     };
   }
 
 setUser(user){
-  this.setState({currentUser: user});
+  this.setState({user: user});
+  if(this.state.user === null){
+    this.setState({displayName: 'Guest'})
+  } else{
+    this.setState({displayName:this.state.user.displayName})
+  }
+
   console.log('This is the currentUser:')
-  console.log(this.state.currentUser);
+  console.log(this.state.user.displayName);
 }
 
 setActiveRoom(room){
@@ -46,7 +53,7 @@ setActiveRoom(room){
           <section className="Left-Dashboard col-lg-4">
             <header className="App-header row">
               <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome</h1>
+              <h1 className="App-title">Welcome {this.state.displayName}</h1>
               <User
                 firebase={firebase}
                 setUser={(user)=>this.setUser(user)}

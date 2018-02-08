@@ -23,11 +23,12 @@ class User extends Component {
     });
   }
 
+
   render(){
    return(
      <section className="login-section">
-      <button onClick={(provider) => this.signInWithPopup(provider)}>Sign In</button>
-      <button onClick={() => this.signOut()}>Sign Out</button>
+        <button onClick={(provider) => this.signInWithPopup(provider)}>Sign In</button>
+        <button onClick={() => this.signOut()}>Sign Out</button>
      </section>
    );
   }
