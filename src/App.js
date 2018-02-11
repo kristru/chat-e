@@ -71,6 +71,7 @@ setActiveRoom(room){
             <MessageList
               firebase={firebase}
               activeRoom={this.state.activeRoom}
+              user={this.state.user}
             />
           </section>
 

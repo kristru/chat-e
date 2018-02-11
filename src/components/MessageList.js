@@ -40,6 +40,26 @@ updateDisplayedMessages(activeRoom) {
   this.setState({displayedMessages:results});
 }
 
+handleChange(e){
+  //this is setting the message state
+  this.setState({content:e.target.value});
+  console.log('newMessage:' + this.state.content);
+}
+
+handleSubmit(e) {
+  //stops the page from refreshing
+  e.preventDefault();
+  //if this field is blank do nothing
+  if(!this.state.content) {return};
+  //CONSOLE TESTS
+  console.log(this.props.activeRoom.key);
+  console.log(this.props.user.displayName);
+  //this.messageRef.push({newMessage:this.state.newMessage});
+  //clear input field
+  this.setState({content: ''});
+  console.log(this.state.content);
+}
+
  render(){
   return(
     <section>
@@ -57,10 +77,16 @@ updateDisplayedMessages(activeRoom) {
           }
         </ul>
       </section>
-      <form>
-        <input type="text" />
-        <input type="submit" value="Send Message" />
-      </form>
+      <section className="send-message">
+         {  !this.props.activeRoom ?
+              <h3>Select a room to begin chatting</h3>
+            :
+            <form onSubmit={(e) => this.handleSubmit(e)}>
+              <input type="text" value={this.state.content} onChange={(e) => this.handleChange(e)} />
+              <input type="submit" value="Send Message" />
+            </form>
+          }
+      </section>
     </section>
   );
  }
