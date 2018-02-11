@@ -51,13 +51,17 @@ handleSubmit(e) {
   e.preventDefault();
   //if this field is blank do nothing
   if(!this.state.content) {return};
-  //CONSOLE TESTS
-  console.log(this.props.activeRoom.key);
-  console.log(this.props.user.displayName);
-  //this.messageRef.push({newMessage:this.state.newMessage});
   //clear input field
   this.setState({content: ''});
   console.log(this.state.content);
+
+  this.messageRef.push(
+    { content:this.state.content,
+      roomId:this.props.activeRoom.key,
+      sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+      username:this.props.user.displayName
+    });
+
 }
 
  render(){
@@ -85,6 +89,7 @@ handleSubmit(e) {
               <input type="text" value={this.state.content} onChange={(e) => this.handleChange(e)} />
               <input type="submit" value="Send Message" />
             </form>
+
           }
       </section>
     </section>
