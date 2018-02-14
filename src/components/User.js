@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class User extends Component {
 
-  signInWithPopup(provider){
+  signInWithPopup(){
     var provider = new this.props.firebase.auth.GoogleAuthProvider();
     this.props.firebase.auth().signInWithPopup( provider );
   }
@@ -17,6 +17,7 @@ class User extends Component {
       this.props.setUser(user);
     });
   }
+
 
   render(){
    return(
