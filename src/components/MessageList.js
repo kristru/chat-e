@@ -29,11 +29,13 @@ class MessageList extends Component {
       //sets message to the snapshot value
       const message = snapshot.val();
       //updates the dom by creating a new array with the message
-      this.setState({messages: this.state.messages.concat( message )});
+      this.setState({messages: this.state.messages.concat( message )},
+                    ()=>{this.updateDisplayedMessages(this.props.activeRoom)}
+                    );
     });
   }
 
-updateDisplayedMessages(activeRoom) {
+ updateDisplayedMessages(activeRoom) {
   console.log(activeRoom);
   const results = this.state.messages.filter((message) => message.roomId === activeRoom.key);
   console.log(results);
