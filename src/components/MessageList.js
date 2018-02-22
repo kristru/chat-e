@@ -60,12 +60,21 @@ handleSubmit(e) {
   this.messageRef.push(
     { content:this.state.content,
       roomId:this.props.activeRoom.key,
-      sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       username:this.props.user.displayName
     });
-
 }
 
+formatDate(message){
+  var date = new Date(message);
+  console.log(date);
+
+  return (
+    <div>
+      sent: {new Date(message).toDateString()} at {new Date(message).toLocaleTimeString()}
+    </div>
+  );
+}
 
  render(){
   return(
@@ -77,8 +86,7 @@ handleSubmit(e) {
               <li className="message" key={index} >
                 <div className="content">{message.content}</div>
                 <div className="username">from: {message.username}</div>
-                <div className="timestamp">sent:{message.sentAt}</div>
-                <div className="timestamp">roomId:{message.roomId}</div>
+                <div className="timestamp">{this.formatDate(message.sentAt)}</div>
               </li>
             )
           }
